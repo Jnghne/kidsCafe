@@ -1,0 +1,70 @@
+spring:
+  profiles:
+    default: dev
+
+# Swagger 설정
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    defaultModelsExpandDepth: 4
+    defaultModelExpandDepth: 4
+    doc-expansion: none
+    disable-swagger-default-url: true
+    display-request-duration: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+    syntax-highlight:
+      theme: nord
+  pre-loading-enabled: true
+
+# p6spy 설정
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+# DB 설정
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+    defer-datasource-initialization: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tictocisland
+    username: root
+    password: 1234
+
+  sql:
+    init:
+      mode: always
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  sql:
+    init:
+      mode: never
+
+  # DB 설정 (테스트용 DB)
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: 1234
