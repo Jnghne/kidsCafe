@@ -16,7 +16,7 @@ import project.kidscafe.api.user.dto.response.ReservationHistoryResponse;
 import project.kidscafe.api.user.service.UserService;
 import project.kidscafe.api.ApiResponse;
 
-@Tag(name= "User", description = "사용자(부모/아이)와 관련된 기능을 수행하는 Controller입니다.")
+@Tag(name= "User", description = "사용자(부모/아이)와 관련된 요청을 수행하는 Controller입니다.")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/user")

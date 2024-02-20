@@ -17,7 +17,7 @@ import project.kidscafe.api.center.service.CenterService;
 import project.kidscafe.api.ApiResponse;
 
 
-@Tag(name= "Center", description = "매장과 매장에 소속된 수업에 대한 기능을 수행하는 Controller입니다. ")
+@Tag(name= "Center", description = "매장, 수업에 관련된 요청을 수행하는 Controller입니다. ")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/center")

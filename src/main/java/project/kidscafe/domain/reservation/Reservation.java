@@ -23,8 +23,6 @@ public class Reservation extends BaseEntity {
     @Column(name = "reservation_id")
     private Long id;
 
-    // TODO) 예약 번호 UUID로 생성하기
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "program_schedule_id")
     private ProgramSchedule programSchedule;
@@ -40,12 +38,6 @@ public class Reservation extends BaseEntity {
     private ReservationStatus reservationStatus;
 
     private LocalDateTime cancelDt;
-
-    public void addReservationChildren(List<Child> children) {
-        this.reservationChildren = children.stream()
-                .map((child) -> ReservationChild.create(this, child))
-                .toList();
-    }
 
     @Builder
     private Reservation(ProgramSchedule programSchedule, Parent parent, List<ReservationChild> reservationChildren, ReservationStatus reservationStatus){
@@ -65,8 +57,15 @@ public class Reservation extends BaseEntity {
         return reservation;
     }
 
+    // -- 편의 메서드
+    public void addReservationChildren(List<Child> children) {
+        this.reservationChildren = children.stream()
+                .map((child) -> ReservationChild.create(this, child))
+                .toList();
+    }
+
+    // -- 비즈니스 로직
     public void cancel() {
-        // 예약 상태 CANCEL로 변경
         this.reservationStatus = ReservationStatus.CANCEL;
         this.cancelDt = LocalDateTime.now();
     }
