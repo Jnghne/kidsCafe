@@ -56,18 +56,18 @@
 
 ## 4. DB 설계
 ### 4.1. Domain 
-1. Center : 매장 
-2. Program : 매장 별 수업 
+- Center : 매장 
+- Program : 매장 별 수업 
    - 매장과 1대 N 관계
    - 매장 별로 수업의 정보가 상이할 수 있기 때문에 (ex) 수업 내용, 최대 인원 수), 매장에 종속적으로 설계했습니다.
-3. Program_Schedule : 수업 별 일정 
+- Program_Schedule : 수업 별 일정 
    - 수업과 1대 N 관계
-4. Parent : 예약자 (부모) 
-5. Child : 예약 대상 (아이)
+- Parent : 예약자 (부모) 
+- Child : 예약 대상 (아이)
    - 부모와 1대 N 관계
-6. Reservation : 예약 데이터 
+- Reservation : 예약 데이터 
    - FK : Program_Schedule, Parent
-7. Reservation_Child : 예약 별 아이 목록 
+- Reservation_Child : 예약 별 아이 목록 
    - FK : Reservation, Child
    - 다대 다 연결 테이블
    
